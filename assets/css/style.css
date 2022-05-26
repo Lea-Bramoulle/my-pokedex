@@ -156,6 +156,7 @@ html {
 
 .pokemon-card-title {
     font-family: "OpenSans-Bold";
+    text-transform: capitalize;
     font-size:1.5rem;
     padding:1rem 0;
 }
@@ -173,11 +174,12 @@ html {
 .pokemon-card-types-button {
     padding:0.5rem 1rem;
     margin:0.1rem;
-    border-radius: 2px;
+    border-radius: 6px;
     border:none;
     background-color: var(--secondary);
     color:white;
     font-family: "OpenSans-Medium";
+    text-transform: capitalize;
 }
 
 .pokemons-container-all-nav-buttons {
