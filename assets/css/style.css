@@ -1,0 +1,263 @@
+@font-face {
+    font-family: "OpenSans-Regular";
+    src: url("./../fonts/OpenSans/OpenSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "OpenSans-Bold";
+    src: url("./../fonts/OpenSans/OpenSans-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "OpenSans-Medium";
+    src: url("./../fonts/OpenSans/OpenSans-Medium.ttf");
+}
+
+html {
+    --primary: #38A1F7 ;
+    --secondary:#6CECA3;
+    --light:#F6F8FC ;
+    --dark : #767F84 ;
+}
+
+body {
+    background-color: var(--light);
+}
+
+html {
+    font-family: "OpenSans-Regular" ;
+}
+
+
+.primary {
+    color: var(--primary) ;
+}
+
+.navbar {
+    width:75% ;
+    margin: 2rem auto ; 
+    padding:1rem 3rem ;
+    background-color: #fff ;
+    display: flex ;
+    align-items: center ;
+    justify-content: space-between ;
+    border-radius: 10px ;
+    box-shadow: 0px 11px 14px -5px rgba(0,0,0,0.1) ;
+}
+
+
+.navbar--logo img {
+    height:4rem;
+    width:auto;
+}
+
+
+.navbar--link-list {
+    width:40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-link {
+    font-family: "OpenSans-Bold";
+    color: var(--dark) ;
+
+}
+
+.navbar-link:hover {
+    color: var(--primary) ; 
+    transition-duration: 0.5s;
+}
+
+.nav-link-main {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-family: "OpenSans-Bold";
+}
+
+
+
+
+.research-container {
+    width: 80%;
+    margin:2rem auto;
+}
+
+.research-form {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 3rem 0;
+}
+
+.research-form input {
+    padding:2rem ;
+    width:61%;
+    border-radius: 20px;
+    border:none;
+    box-shadow: 0px 11px 14px -5px rgba(0,0,0,0.05) ;
+}
+
+.research-form button {
+    margin-left: -4.5rem;
+    background: rgb(56,161,247);
+    background: linear-gradient(103deg, rgba(56,161,247,1) 0%, rgba(108,236,163,1) 100%);
+    border:none;
+    border-radius: 20%;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+}
+
+.research-form i {
+   color:white ;
+   padding:0.5rem;
+}
+
+
+.pokemons-container {
+    width:80% ;
+    margin: auto;
+    display: flex ;
+    justify-content: space-between;
+    align-items: unset;
+}
+
+.pokemons-container-all {
+    width:68% ;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.pokemon-card {
+    width:28%;
+    margin:2rem 0;
+    background-color: #fff;
+    border-radius: 20px;
+    padding:3rem 1rem;
+    text-align: center;
+    box-shadow: 0px 11px 14px -5px rgba(0,0,0,0.05) ;
+}
+
+
+.pokemon-card-img-container {
+    margin-top: -5rem; 
+    margin-bottom: 1rem;
+}
+
+.pokemon-card-img {
+    width:40%;
+    margin-bottom: 1rem;
+}
+
+.pokemon-card-title {
+    font-family: "OpenSans-Bold";
+    font-size:1.5rem;
+    padding:1rem 0;
+}
+
+.pokemon-card-id {
+    font-family: "OpenSans-Medium";
+    font-size:0.8rem;
+    color: var(--dark) ;
+}
+
+.pokemon-card-types {
+    margin-top: 1rem;
+}
+
+.pokemon-card-types-button {
+    padding:0.5rem 1rem;
+    margin:0.1rem;
+    border-radius: 2px;
+    border:none;
+    background-color: var(--secondary);
+    color:white;
+    font-family: "OpenSans-Medium";
+}
+
+
+
+.pokemons-container-details {
+    width:32% ;
+    background-color: #fff;
+    border-radius: 20px;
+    padding:3rem 1rem;
+    margin-left: 1rem;
+    margin-top: 1.6rem;
+    box-shadow: 0px 11px 14px -5px rgba(0,0,0,0.05) ;
+    text-align: center;
+}
+
+.pokemon-detail-img-container {
+    margin-top: -8rem;
+    text-align: center;
+}
+
+.pokemon-detail-img-container img {
+    width:80%;
+}
+
+.pokemon-detail-title {
+    font-family: "OpenSans-Bold";
+    font-size:1.5rem;
+    padding:1rem 0;
+}
+
+.pokemon-detail-subtitle {
+    font-family: "OpenSans-Bold";
+    font-size:1.2rem;
+    padding:1rem 0;
+    margin-top: 2rem;
+}
+
+.pokemon-detail-paragraph {
+    line-height: 1.4;
+}
+
+.pokemon-detail-id {
+    font-family: "OpenSans-Medium";
+    font-size:1.2rem;
+    color: var(--dark) ;
+}
+
+.pokemon-detail-types {
+    margin-top: 1rem;
+}
+
+.pokemon-detail-types-button {
+    padding:0.5rem 1rem;
+    border-radius: 2px;
+    border:none;
+    background-color: var(--secondary);
+    color:white;
+    font-family: "OpenSans-Medium";
+}
+
+.pokemon-detail-badge {
+    background-color: var(--light);
+    padding: 0.3rem 0.5rem;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.pokemon-detail-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.pokemon-detail-container .left .right {
+    width:50%;
+}
+
+.pokemon-detail-evolutions-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pokemon-evolution-img {
+    width:20%;
+}

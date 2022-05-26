@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Pokeapp</title>
+
+</head>
+<body>
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="navbar--logo">
+                <img src="./assets/images/pokeball.png" alt="pokeapp logo">
+            </div>
+
+            <ul class="navbar--link-list">
+                <li class="navbar-link">Générations</li>
+                <li class="navbar-link">Pokemons</li>
+                <li class="navbar-link nav-link-main">Mon pokédex</li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <section class="research-container">
+
+            <form action="" class="research-form">
+
+                <input type="text" name="name" id="" placeholder="Rechercher un pokémon">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass fa-2x"></i></button>
+
+            </form>
+
+        </section>
+
+
+
+        <section class="pokemons-container">
+
+
+            <div class="pokemons-container-all">
+
+
+
+            </div>
+
+
+
+
+            <div class="pokemons-container-details">
+
+
+                <div class="pokemon-detail-img-container">
+                    <img class="pokemon-detail-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png" alt="">
+                </div>
+
+                <span class="pokemon-detail-id">#122</span>
+                <h2 class="pokemon-detail-title">Bulbizare</h2>
+
+                <div class="pokemon-detail-types">
+                    <button class="pokemon-detail-types-button">Plante</button>
+                    <button class="pokemon-detail-types-button">Truc</button>
+                </div>
+
+                <h3 class="pokemon-detail-subtitle">Pokemon entries</h3>
+                <p class="pokemon-detail-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                <h3 class="pokemon-detail-subtitle">Pokemon abilities</h3>
+                <span class="pokemon-detail-abilities">Torrent</span>
+                <span class="pokemon-detail-abilities">Defiant</span>
+
+                <div class="pokemon-detail-container">
+
+                    <div class="left">
+                        <h3 class="pokemon-detail-subtitle">Height</h3>
+                        <p class="pokemon-detail-badge ">ze</p>
+                    </div>
+
+                    <div class="right">
+                        <h3 class="pokemon-detail-subtitle">Weight</h3>
+                        <p class="pokemon-detail-badge ">ze</p>
+                    </div>
+
+                </div>
+
+                <h3 class="pokemon-detail-subtitle">Weakness</h3>
+                <span class="pokemon-detail-abilities">Torrent</span>
+                <span class="pokemon-detail-abilities">Defiant</span>
+                <span class="pokemon-detail-abilities">Defiant</span>
+
+                <h3 class="pokemon-detail-subtitle">Evolutions</h3> 
+
+                <div class="pokemon-detail-evolutions-container">
+                    <img class="pokemon-evolution-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png" alt="">
+                    <img class="pokemon-evolution-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png" alt="">
+                    <img class="pokemon-evolution-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png" alt="">
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <template id="pokemon-card-template">
+            <div class="pokemon-card">
+
+                <div class="pokemon-card-img-container">
+                    <img class="pokemon-card-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/132.gif" alt="">
+                </div>
+
+                <span class="pokemon-card-id">#122</span>
+                <h2 class="pokemon-card-title">Bulbizare</h2>
+
+                <div class="pokemon-card-types">
+
+                </div>
+
+            </div>
+        </template>
+
+
+    </main>
+    
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
