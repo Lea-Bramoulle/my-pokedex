@@ -12,7 +12,7 @@ const app = {
         
         app.addListenerToActions() ;
 
-
+        
     }, 
 
 
@@ -52,6 +52,11 @@ const app = {
                 await app.displayPokemonsInDom(pokemonDetails) ;
 
             });
+
+            app.handleDisplayDefaultPokemonDetails() ;
+
+
+
 
 
         } catch (error) {
@@ -101,7 +106,7 @@ const app = {
 
         }) ;
 
-
+        
         newpokemon.querySelector(".pokemon-card").addEventListener('click', app.handleDisplayPokemonDetails);
         
         
@@ -111,6 +116,25 @@ const app = {
 
 
     }, 
+
+
+    handleDisplayDefaultPokemonDetails: async () => {
+
+        try {
+
+            const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${offSet+1}`)
+            const pokemon = await result.json() ;
+
+            console.log(pokemon.name) ;
+
+            app.displayPokemonDetailsInDom(pokemon) ;
+    
+        } catch (error) {
+            console.log(error);
+            alert("Impossible d'aficher les détails du pokemon");
+        }
+
+    },
 
 
     handleDisplayPokemonDetails: async (event) => {
@@ -123,9 +147,6 @@ const app = {
             const pokemon = await result.json() ;
 
             console.log(pokemon.name) ;
-
-            const pokemonsContainerElement = document.querySelector(".pokemon-container-details") ;
-            pokemonsContainerElement.textContent = "" ;
 
             app.displayPokemonDetailsInDom(pokemon) ;
     
@@ -140,6 +161,8 @@ const app = {
 
     displayPokemonDetailsInDom: (pokemon) => {
 
+        const pokemonsContainerElement = document.querySelector(".pokemon-container-details") ;
+        pokemonsContainerElement.textContent = "" ;
 
         const template = document.getElementById("pokemon-details-template") ;
         const newpokemon = template.cloneNode(true).content ;
