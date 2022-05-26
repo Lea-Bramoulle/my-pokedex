@@ -158,7 +158,8 @@ html {
     font-family: "OpenSans-Bold";
     text-transform: capitalize;
     font-size:1.5rem;
-    padding:1rem 0;
+    padding-bottom:1rem;
+    padding-top: 0.5rem;
 }
 
 .pokemon-card-id {
@@ -231,6 +232,7 @@ html {
     font-size:1.2rem;
     padding:1rem 0;
     margin-top: 2rem;
+    margin-left: 1rem;
 }
 
 .pokemon-detail-paragraph {
@@ -260,20 +262,25 @@ html {
 
 .pokemon-detail-badge {
     background-color: var(--light);
-    padding: 0.3rem 0.5rem;
+    padding: 0.5rem 1.5rem;
     border-radius: 20px;
     width: 100%;
+    margin:auto;
 }
 
 .pokemon-detail-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    text-align: center;
+    align-items: center;
 }
 
 .pokemon-detail-container .left .right {
-    width:50%;
+    width:40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .pokemon-detail-evolutions-container {
@@ -284,4 +291,34 @@ html {
 
 .pokemon-evolution-img {
     width:20%;
+}
+
+.pokemon-detail-base-stat {
+    width:80%;
+    margin:auto;
+}
+
+.base-stat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:0.6rem 0;
+}
+
+.base-stat p {
+    width:30%;
+    color: var(--dark) ;
+    text-align: start;
+    font-size: 0.8rem;
+}
+
+.base-stat .stat-container-full {
+    width:65%;
+    background-color: var(--light);
+    height:6px;
+}
+
+.base-stat .stat-container-value  {
+    background: var(--linear-bg);
+    height:6px;
 }

@@ -172,6 +172,20 @@ const app = {
 
         }) ;
 
+        newpokemon.querySelector(".hp-stat-container").style.width = `${(pokemon.stats[0].base_stat*100)/255}%`;
+        newpokemon.querySelector(".attaque-stat-container").style.width = `${(pokemon.stats[1].base_stat*100)/255}%`;
+        newpokemon.querySelector(".defense-stat-container").style.width = `${(pokemon.stats[2].base_stat*100)/255}%`;
+        newpokemon.querySelector(".attaque-spe-stat-container").style.width = `${(pokemon.stats[3].base_stat*100)/255}%`;
+        newpokemon.querySelector(".defense-spe-stat-container").style.width = `${(pokemon.stats[4].base_stat*100)/255}%`;
+        newpokemon.querySelector(".speed-stat-container").style.width = `${(pokemon.stats[5].base_stat*100)/255}%`;
+
+
+        const heightElement = newpokemon.querySelector(".height") ;
+        heightElement.textContent = `${pokemon.height/10} m.` ;
+
+        const weightElement = newpokemon.querySelector(".weight") ;
+        weightElement.textContent = `${pokemon.weight/10} kg.` ;
+
         const pokemonContainer = document.querySelector(".pokemon-container-details") ;
         pokemonContainer.appendChild(newpokemon) ;
 
