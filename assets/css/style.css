@@ -18,6 +18,7 @@ html {
     --secondary:#6CECA3;
     --light:#F6F8FC ;
     --dark : #767F84 ;
+    --linear-bg: linear-gradient(103deg, rgba(56,161,247,1) 0%, rgba(108,236,163,1) 100%);
 }
 
 body {
@@ -101,7 +102,7 @@ html {
 .research-form button {
     margin-left: -4.5rem;
     background: rgb(56,161,247);
-    background: linear-gradient(103deg, rgba(56,161,247,1) 0%, rgba(108,236,163,1) 100%);
+    background: var(--linear-bg);
     border:none;
     border-radius: 20%;
     padding: 0.2rem 0.5rem;
@@ -122,8 +123,11 @@ html {
     align-items: unset;
 }
 
-.pokemons-container-all {
+#pokemons-container-all {
     width:68% ;
+}
+
+.pokemons-container-all {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -174,6 +178,21 @@ html {
     background-color: var(--secondary);
     color:white;
     font-family: "OpenSans-Medium";
+}
+
+.pokemons-container-all-nav-buttons {
+    text-align: center;
+}
+
+.pokemons-container-all-nav-buttons button {
+    margin: 2rem ;
+    padding : 1rem 3rem ; 
+    border:none ;
+    border-radius: 20px;
+    background: var(--linear-bg);
+    color: white; 
+    font-family: 'OpenSans-Bold';
+    cursor: pointer;
 }
 
 

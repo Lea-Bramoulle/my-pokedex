@@ -1,10 +1,14 @@
+let offSet= 0 ;
+let limit = 1125 ;
+
 const app = {
 
 
     init: () => {
 
+        app.addListenerToActions() ;
 
-        app.handleDisplayPokemonList() ;
+        app.handleDisplayPokemonsList() ;
         app.fetchTypeInformations() ;
 
 
@@ -14,24 +18,38 @@ const app = {
     addListenerToActions: () => {
 
 
+        buttonNextElement = document.getElementById("go-next") ;
+        buttonNextElement.addEventListener("click", () => {
+            app.goForward() ;
+        }) ;
+
+        buttonPrevElement = document.getElementById("go-back") ;
+        buttonPrevElement.addEventListener("click", () => {
+            app.goBack() ;
+        })
+
+
 
     }, 
 
 
-    handleDisplayPokemonList: async () => {
+    handleDisplayPokemonsList: async () => {
 
 
         try {
 
-            const result = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20') ;
+            const result = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offSet}&limit=15`) ;
             const pokemons = await result.json() ;
+
+            const pokemonsContainerElement = document.querySelector(".pokemons-container-all") ;
+            pokemonsContainerElement.textContent = "" ;
 
             pokemons.results.forEach( async pokemon => {
 
                 const result = await fetch(pokemon.url) ;
                 const pokemonDetails = await result.json() ;
 
-                app.displayPokemonInDom(pokemonDetails) ;
+                app.displayPokemonsInDom(pokemonDetails) ;
 
             });
 
@@ -44,7 +62,7 @@ const app = {
 
 
 
-    displayPokemonInDom: (pokemon) => {
+    displayPokemonsInDom: (pokemon) => {
 
         console.log(pokemon) ;
 
@@ -75,8 +93,6 @@ const app = {
 
 
             typesContainerElement.appendChild(buttonElement) ;
-
-
 
 
         }) ;
@@ -125,7 +141,34 @@ const app = {
         return typeInformationObject ;
 
 
-    }
+    }, 
+
+
+    goBack: async () => {
+
+        if (offSet > 0 ) {
+            offSet = offSet - 15 ;
+        } else {
+            offSet = 0 ;
+        }
+
+        await app.handleDisplayPokemonsList() ;
+
+
+    }, 
+
+
+
+    goForward: async () => {
+
+
+        if (offSet < limit ) {
+            offSet = offSet + 15 ;
+        }
+
+        await app.handleDisplayPokemonsList() ;
+
+    },
 
 
 }
