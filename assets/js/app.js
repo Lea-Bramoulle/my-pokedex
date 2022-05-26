@@ -6,10 +6,11 @@ const app = {
 
     init: () => {
 
-        app.addListenerToActions() ;
-
+        
         app.handleDisplayPokemonsList() ;
         app.fetchTypeInformations() ;
+        
+        app.addListenerToActions() ;
 
 
     }, 
@@ -26,8 +27,7 @@ const app = {
         buttonPrevElement = document.getElementById("go-back") ;
         buttonPrevElement.addEventListener("click", () => {
             app.goBack() ;
-        })
-
+        }) ;
 
 
     }, 
@@ -38,7 +38,7 @@ const app = {
 
         try {
 
-            const result = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offSet}&limit=15`) ;
+            const result = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offSet}&limit=12`) ;
             const pokemons = await result.json() ;
 
             const pokemonsContainerElement = document.querySelector(".pokemons-container-all") ;
@@ -49,9 +49,10 @@ const app = {
                 const result = await fetch(pokemon.url) ;
                 const pokemonDetails = await result.json() ;
 
-                app.displayPokemonsInDom(pokemonDetails) ;
+                await app.displayPokemonsInDom(pokemonDetails) ;
 
             });
+
 
         } catch (error) {
             console.log(error);
@@ -62,12 +63,15 @@ const app = {
 
 
 
+
     displayPokemonsInDom: (pokemon) => {
 
-        console.log(pokemon) ;
+      //console.log(pokemon) ;
 
         const template = document.getElementById("pokemon-card-template") ;
         const newpokemon = template.cloneNode(true).content ;
+
+        newpokemon.querySelector(".pokemon-card").dataset.dataId = pokemon.id ;
 
         const spriteElement = newpokemon.querySelector("img") ; 
         spriteElement.src = pokemon.sprites.other.home.front_default ;
@@ -79,7 +83,7 @@ const app = {
         idElement.textContent = `#${pokemon.id}` ; 
 
         const typesContainerElement = newpokemon.querySelector(".pokemon-card-types") ; 
-        console.log(typesContainerElement) ;
+        //console.log(typesContainerElement) ;
 
         pokemon.types.forEach( type => {
 
@@ -98,12 +102,80 @@ const app = {
         }) ;
 
 
+        newpokemon.querySelector(".pokemon-card").addEventListener('click', app.handleDisplayPokemonDetails);
+        
+        
         const pokemonContainerElement = document.querySelector(".pokemons-container-all") ;
-
         pokemonContainerElement.appendChild(newpokemon) ;
 
 
+
     }, 
+
+
+    handleDisplayPokemonDetails: async (event) => {
+
+        const pokemonId = event.target.closest(".pokemon-card").dataset.dataId ;
+        
+        try {
+
+            const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+            const pokemon = await result.json() ;
+
+            console.log(pokemon.name) ;
+
+            const pokemonsContainerElement = document.querySelector(".pokemon-container-details") ;
+            pokemonsContainerElement.textContent = "" ;
+
+            app.displayPokemonDetailsInDom(pokemon) ;
+    
+        } catch (error) {
+            console.log(error);
+            alert("Impossible d'aficher les détails du pokemon");
+        }
+
+    }, 
+
+
+
+    displayPokemonDetailsInDom: (pokemon) => {
+
+
+        const template = document.getElementById("pokemon-details-template") ;
+        const newpokemon = template.cloneNode(true).content ;
+
+        const imgElement = newpokemon.querySelector(".pokemon-detail-img") ;
+        imgElement.src = pokemon.sprites.other.home.front_default ;
+
+        const titleElement = newpokemon.querySelector(".pokemon-detail-title") ;
+        titleElement.textContent = pokemon.name ; 
+
+        const idElement = newpokemon.querySelector(".pokemon-detail-id") ;
+        idElement.textContent = `#${pokemon.id}` ; 
+
+        const typesContainerElement = newpokemon.querySelector(".pokemon-detail-types") ; 
+        //console.log(typesContainerElement) ;
+
+        pokemon.types.forEach( type => {
+
+            const buttonElement = document.createElement("button") ;
+            buttonElement.classList.add("pokemon-detail-types-button") ; 
+
+            const typeInformationObject =  app.fetchTypeInformations(type.type.name) ;
+
+            buttonElement.style.backgroundColor = `#${typeInformationObject.color}`
+            buttonElement.textContent = type.type.name ;
+
+
+            typesContainerElement.appendChild(buttonElement) ;
+
+
+        }) ;
+
+        const pokemonContainer = document.querySelector(".pokemon-container-details") ;
+        pokemonContainer.appendChild(newpokemon) ;
+
+    },
 
 
     fetchTypeInformations: (typeName) => {
@@ -147,7 +219,7 @@ const app = {
     goBack: async () => {
 
         if (offSet > 0 ) {
-            offSet = offSet - 15 ;
+            offSet = offSet - 12 ;
         } else {
             offSet = 0 ;
         }
@@ -163,7 +235,7 @@ const app = {
 
 
         if (offSet < limit ) {
-            offSet = offSet + 15 ;
+            offSet = offSet + 12 ;
         }
 
         await app.handleDisplayPokemonsList() ;

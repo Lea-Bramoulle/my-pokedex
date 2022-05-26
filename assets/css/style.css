@@ -199,7 +199,7 @@ html {
 
 
 
-.pokemons-container-details {
+.pokemon-container-details {
     width:32% ;
     background-color: #fff;
     border-radius: 20px;
@@ -223,6 +223,7 @@ html {
     font-family: "OpenSans-Bold";
     font-size:1.5rem;
     padding:1rem 0;
+    text-transform: uppercase;
 }
 
 .pokemon-detail-subtitle {
@@ -248,11 +249,13 @@ html {
 
 .pokemon-detail-types-button {
     padding:0.5rem 1rem;
+    margin:0.3rem;
     border-radius: 2px;
     border:none;
     background-color: var(--secondary);
     color:white;
     font-family: "OpenSans-Medium";
+    text-transform: uppercase;
 }
 
 .pokemon-detail-badge {
