@@ -209,8 +209,89 @@ const app = {
         const weightElement = newpokemon.querySelector(".weight") ;
         weightElement.textContent = `${pokemon.weight/10} kg.` ;
 
+
+        app.getPokemonEvolutionChain(pokemon) ;
+
+
         const pokemonContainer = document.querySelector(".pokemon-container-details") ;
         pokemonContainer.appendChild(newpokemon) ;
+
+    },
+
+
+
+    getPokemonEvolutionChain: async (pokemon) => {
+
+
+        const pokemonId = pokemon.id ; 
+        console.log(pokemonId) ; 
+        
+        const evolutionChainArray = [] ;
+
+        try {
+
+            const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`) ;
+            const pokemonSpicies = await result.json() ;
+
+            const result2 = await fetch(pokemonSpicies.evolution_chain.url) ;
+            const pokemonEvolutionChain = await result2.json() ;
+
+
+            if(pokemonEvolutionChain.chain.evolves_to.length === 1) {
+
+                console.log(pokemonEvolutionChain.chain.species) ; 
+
+                const resultEvol1 = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonEvolutionChain.chain.species.name}`) ;
+                const evol1 = await resultEvol1.json() ;
+
+                const resultEvol2 = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonEvolutionChain.chain.evolves_to[0].species.name}`) ;
+                const evol2 = await resultEvol2.json() ;
+
+                if (pokemonEvolutionChain.chain.evolves_to[0].evolves_to.length != 0) {
+
+                    const resultEvol3 = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonEvolutionChain.chain.evolves_to[0].evolves_to[0].species.name}`) ;
+                    const evol3 = await resultEvol3.json() ;
+
+                    evolutionChainArray.push(evol1,evol2, evol3) ;
+
+                    console.log(evolutionChainArray) ;
+                    return evolutionChainArray ; 
+
+             
+                } else {
+
+                    evolutionChainArray.push(evol1,evol2) ;
+
+                    console.log(evolutionChainArray) ;
+                    return evolutionChainArray ;
+
+                }
+
+            } else if (pokemonEvolutionChain.chain.evolves_to.length === 0) {
+
+                return evolutionChainArray ;
+
+            } else {
+
+
+                pokemonEvolutionChain.chain.evolves_to.forEach(async pokemon => {
+                    
+                    const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.species.name}`) ;
+                    const pokemonFromChain = await result.json() ;
+
+                    evolutionChainArray.push(pokemonFromChain) ;
+
+                })
+
+                console.log(evolutionChainArray) ;
+                return evolutionChainArray ;
+
+            }
+
+        } catch (error) {
+            console.log(error);
+            alert("Impossible d'aficher les détails du pokemon");
+        }
 
     },
 
