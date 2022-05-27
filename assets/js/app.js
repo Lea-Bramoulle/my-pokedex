@@ -159,7 +159,7 @@ const app = {
 
 
 
-    displayPokemonDetailsInDom: (pokemon) => {
+    displayPokemonDetailsInDom: async (pokemon) => {
 
         const pokemonsContainerElement = document.querySelector(".pokemon-container-details") ;
         pokemonsContainerElement.textContent = "" ;
@@ -210,7 +210,55 @@ const app = {
         weightElement.textContent = `${pokemon.weight/10} kg.` ;
 
 
-        app.getPokemonEvolutionChain(pokemon) ;
+        const evolutionChainArray =  await app.getPokemonEvolutionChain(pokemon) ;
+        console.log(evolutionChainArray) ; 
+        
+        const evolutionChainContainer = newpokemon.querySelector(".pokemon-detail-evolutions-container") ;
+
+        if(evolutionChainArray.length === 0 ) {
+            
+            newpokemon.querySelector(".pokemon-detail-evolutions-container").textContent = "No évolution." ;
+
+        } else {
+
+            evolutionChainArray.forEach(pokemon => {
+                console.log(pokemon) ; 
+    
+                const imgElement = document.createElement("img") ;
+                imgElement.classList.add("pokemon-evolution-img") ;
+                imgElement.src = pokemon.sprites.other.home.front_default ;
+    
+                evolutionChainContainer.appendChild(imgElement) ;
+    
+            })
+        }
+        
+
+
+        
+        // if (evolutionChainArray.length = 0) {
+
+        //     newpokemon.querySelector(".evolution-chain-title").style.display = "none" ;
+
+        // } else {
+
+        //     console.log("ayay") ;
+        //     console.log(evolutionChainArray) ;
+
+        //     const evolutionChainContainer = newpokemon.querySelector(".pokemon-detail-evolutions-container") ;
+
+        //     for ( const pokemon of evolutionChainArray) {
+
+        //         console.log("lalalal") ;
+
+        //         const imgElement = document.createElement("img") ;
+        //         imgElement.src = pokemon.sprites.other.home.front_default ;
+
+        //         evolutionChainContainer.appendChild(imgElement) ;
+
+        //     }
+
+        // }
 
 
         const pokemonContainer = document.querySelector(".pokemon-container-details") ;
