@@ -29,6 +29,8 @@ const app = {
             app.goBack() ;
         }) ;
 
+        app.handleSearchForm() ;
+
 
     }, 
 
@@ -161,6 +163,7 @@ const app = {
 
     displayPokemonDetailsInDom: async (pokemon) => {
 
+
         const pokemonsContainerElement = document.querySelector(".pokemon-container-details") ;
         pokemonsContainerElement.textContent = "" ;
 
@@ -233,33 +236,46 @@ const app = {
             })
         }
         
+        if(pokemon.id>1) {
+
+            const previousResult= await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.id-1}`)
+            const previousPokemon = await previousResult.json() ;
+            
+            newpokemon.querySelector(".pokemon-nagigation-prev-img").src = previousPokemon.sprites.other.home.front_default ;
+            newpokemon.querySelector(".pokemon-nagigation-prev-name").textContent = previousPokemon.name ;
+
+            const previousPokemonButton = newpokemon.querySelector(".pokemon-navigation-prev") ;
+
+            previousPokemonButton.addEventListener("click", () => {
+
+                app.displayPokemonDetailsInDom(previousPokemon) ; 
+                
+            }) ;
 
 
-        
-        // if (evolutionChainArray.length = 0) {
+        } else {
+            newpokemon.querySelector(".pokemon-nagigation-prev-img").remove() ;
+            newpokemon.querySelector(".pokemon-nagigation-prev-name").remove() ;        
+        }
 
-        //     newpokemon.querySelector(".evolution-chain-title").style.display = "none" ;
+        if(pokemon.id < 1125) {
 
-        // } else {
+            const nextResult= await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.id+1}`)
+            const nextPokemon = await nextResult.json() ;
 
-        //     console.log("ayay") ;
-        //     console.log(evolutionChainArray) ;
+            newpokemon.querySelector(".pokemon-nagigation-next-img").src = nextPokemon.sprites.other.home.front_default ;
+            newpokemon.querySelector(".pokemon-nagigation-next-name").textContent = nextPokemon.name ;
 
-        //     const evolutionChainContainer = newpokemon.querySelector(".pokemon-detail-evolutions-container") ;
+            const nextPokemonButton = newpokemon.querySelector(".pokemon-navigation-next")
+            nextPokemonButton.addEventListener("click", () => {
+                app.displayPokemonDetailsInDom(nextPokemon) ; 
+            }) ;
 
-        //     for ( const pokemon of evolutionChainArray) {
 
-        //         console.log("lalalal") ;
-
-        //         const imgElement = document.createElement("img") ;
-        //         imgElement.src = pokemon.sprites.other.home.front_default ;
-
-        //         evolutionChainContainer.appendChild(imgElement) ;
-
-        //     }
-
-        // }
-
+        } else {
+            newpokemon.querySelector(".pokemon-nagigation-next-img").remove() ;
+            newpokemon.querySelector(".pokemon-nagigation-next-name").remove() ;        
+        }
 
         const pokemonContainer = document.querySelector(".pokemon-container-details") ;
         pokemonContainer.appendChild(newpokemon) ;
@@ -407,6 +423,60 @@ const app = {
         await app.handleDisplayPokemonsList() ;
 
     },
+
+
+
+    handleSearchForm: () => {
+
+
+        const formElement = document.querySelector(".research-form") ;
+
+        formElement.addEventListener("submit", (event) => {
+
+            event.preventDefault() ;
+
+            const inputElement = document.getElementById("research-input") ;
+            const inputValue = inputElement.value.toLowerCase();
+            app.researchPokemonsByName(inputValue) ;
+
+        })
+
+
+    },
+
+
+    researchPokemonsByName: async (inputValue) => {
+
+        const result = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1125") ;
+        const allPokemons = await result.json() ;
+
+        let researchedPokemons = [] ;
+
+        allPokemons.results.forEach(async element => {
+
+            if(element.name === inputValue) {
+
+
+                const pokeonContainerElement = document.querySelector(".pokemons-container-all") ;
+                pokeonContainerElement.textContent = "" ;
+
+                const result = await fetch(element.url) ;
+                const pokemon = await result.json();
+
+                app.displayPokemonsInDom(pokemon) ;
+
+
+            } 
+
+        })
+
+        const resetResearchButtonElement = document.querySelector(".reset-research-button") ;
+        resetResearchButtonElement.addEventListener("click", () => {
+            app.init() ; 
+        })
+        
+
+    }
 
 
 }

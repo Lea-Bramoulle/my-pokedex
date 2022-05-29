@@ -100,7 +100,6 @@ html {
 }
 
 .research-form button {
-    margin-left: -4.5rem;
     background: rgb(56,161,247);
     background: var(--linear-bg);
     border:none;
@@ -109,9 +108,16 @@ html {
     cursor: pointer;
 }
 
+.research-form-submit {
+    margin-left: -6.5rem;
+    display: flex;
+    align-items: center;
+}
+
 .research-form i {
    color:white ;
    padding:0.5rem;
+   cursor: pointer;
 }
 
 
@@ -231,8 +237,8 @@ html {
     font-family: "OpenSans-Bold";
     font-size:1.2rem;
     padding:1rem 0;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
     text-align: center;
 }
 
@@ -325,3 +331,67 @@ html {
     background: var(--linear-bg);
     height:6px;
 }
+
+
+.pokemon-navigation-container {
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    width:80%;
+    margin:4rem auto ;
+    border-radius: 20px;
+}
+
+
+.pokemon-navigation-prev {
+    width:50% ;
+    margin:2rem 0;
+    padding:0.5rem 1rem;
+    height:2rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.pokemon-navigation-next {
+    border-left: solid 1px var(--dark);
+    width:50% ;
+    margin:2rem 0;
+    padding:0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    cursor: pointer;
+}
+
+.pokemon-nagigation-prev-img {
+    width:30%;
+    padding:0 0.4rem ; 
+}
+
+.pokemon-nagigation-prev-name {
+    font-family: "OpenSans-Bold";
+}
+
+.pokemon-nagigation-prev-name {
+    color:grey;
+    font-size: 0.6rem;
+    text-transform: capitalize;
+}
+
+.pokemon-nagigation-next-img {
+    width:30%;
+    padding:0 0.4rem ; 
+}
+
+.pokemon-nagigation-next-name {
+    font-family: "OpenSans-Bold";
+}
+
+.pokemon-nagigation-next-name {
+    color:grey;
+    font-size: 0.6rem;
+    text-transform: capitalize;
+}
+
