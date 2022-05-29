@@ -11,7 +11,6 @@ const app = {
         app.fetchTypeInformations() ;
         
         app.addListenerToActions() ;
-
         
     }, 
 
@@ -30,6 +29,20 @@ const app = {
         }) ;
 
         app.handleSearchForm() ;
+
+        const resetResearchButtonElement = document.querySelector(".reset-research-button") ;
+        
+        resetResearchButtonElement.addEventListener("click", () => {
+
+            const pokeonContainerElement = document.querySelector(".pokemons-container-all") ;
+            pokeonContainerElement.textContent = "" ;
+    
+            const pokeonDetailContainerElement = document.querySelector(".pokemon-container-details") ;
+            pokeonDetailContainerElement.textContent = "" ;
+
+            app.handleDisplayPokemonsList() ; 
+
+        })
 
 
     }, 
@@ -221,7 +234,7 @@ const app = {
             abilityElement.classList.add("pokemon-detail-abilities") ;
             abilityElement.textContent = element.ability.name ;
             abilitiesContainerElement.appendChild(abilityElement) ;
-            
+
         })
 
 
@@ -463,29 +476,21 @@ const app = {
         const result = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1125") ;
         const allPokemons = await result.json() ;
 
-        let researchedPokemons = [] ;
-
-        allPokemons.results.forEach(async element => {
-
-            if(element.name === inputValue) {
 
 
-                const pokeonContainerElement = document.querySelector(".pokemons-container-all") ;
-                pokeonContainerElement.textContent = "" ;
+        var researchedPokemons = allPokemons.results.filter( element => element.name.includes(inputValue))
+        console.log(researchedPokemons)
 
-                const result = await fetch(element.url) ;
-                const pokemon = await result.json();
+        researchedPokemons.forEach(async element => {
 
-                app.displayPokemonsInDom(pokemon) ;
+            const pokeonContainerElement = document.querySelector(".pokemons-container-all") ;
+            pokeonContainerElement.textContent = "" ;
 
+            const result = await fetch(element.url) ;
+            const pokemon = await result.json();
 
-            } 
+            app.displayPokemonsInDom(pokemon) ;
 
-        })
-
-        const resetResearchButtonElement = document.querySelector(".reset-research-button") ;
-        resetResearchButtonElement.addEventListener("click", () => {
-            app.init() ; 
         })
         
 
