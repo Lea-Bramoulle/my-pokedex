@@ -267,11 +267,21 @@ html {
     text-transform: uppercase;
 }
 
+.pokemon-detail-abilities {
+    background-color: var(--light);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    width: 30%;
+    margin-left:-1rem;
+    text-align: center;
+    text-transform: capitalize;
+}
+
 .pokemon-detail-badge {
     background-color: var(--light);
     padding: 0.5rem 1.5rem;
     border-radius: 20px;
-    width: 100%;
+    width: 30%;
     margin-left:-1rem;
     text-align: center;
 }
@@ -283,13 +293,12 @@ html {
     align-items: center;
 }
 
-.pokemon-detail-container .left .right {
-    width:40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.right {
+    width:50%;
+}
+
+.left {
+    width:50%;
 }
 
 .pokemon-detail-evolutions-container {
@@ -345,7 +354,7 @@ html {
 
 .pokemon-navigation-prev {
     width:50% ;
-    margin:2rem 0;
+    margin:1rem 0;
     padding:0.5rem 1rem;
     height:2rem;
     display: flex;
@@ -357,7 +366,7 @@ html {
 .pokemon-navigation-next {
     border-left: solid 1px var(--dark);
     width:50% ;
-    margin:2rem 0;
+    margin:1rem 0;
     padding:0.5rem 1rem;
     display: flex;
     align-items: center;

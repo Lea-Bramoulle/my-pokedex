@@ -212,6 +212,19 @@ const app = {
         const weightElement = newpokemon.querySelector(".weight") ;
         weightElement.textContent = `${pokemon.weight/10} kg.` ;
 
+        
+        const abilitiesContainerElement = newpokemon.querySelector(".abilities-container") ;
+        
+        pokemon.abilities.forEach(element => {
+
+            const abilityElement = document.createElement("p") ;
+            abilityElement.classList.add("pokemon-detail-abilities") ;
+            abilityElement.textContent = element.ability.name ;
+            abilitiesContainerElement.appendChild(abilityElement) ;
+            
+        })
+
+
 
         const evolutionChainArray =  await app.getPokemonEvolutionChain(pokemon) ;
         console.log(evolutionChainArray) ; 
